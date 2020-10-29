@@ -53,7 +53,7 @@ class Bottleneck(nn.Module):
     
 #ResNet
 class ResNet(nn.Module):
-    def __init__(self, block, layers, num_classes=1000):
+    def __init__(self, block, layers, num_classes=2):
         self.inplanes = 64
         super(ResNet, self).__init__()
         self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3, bias=False)
@@ -66,6 +66,7 @@ class ResNet(nn.Module):
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2)
         self.avgpool = nn.AvgPool2d(7, stride = 1)
         self.fc = nn.Linear(512 * block.expansion, num_classes)
+        self.softmax = nn.Softmax(dim = num_classes)
 
         for m in self.modules():#modules: store all the layers in self
             if isinstance(m, nn.Conv2d):
@@ -99,6 +100,9 @@ class ResNet(nn.Module):
             x = self.layer2(x)
             x = self.layer3(x)
             x = self.layer4(x)
+
+            x = self.fc(x)
+            x = self.softmax(x)
 
             return x
 
