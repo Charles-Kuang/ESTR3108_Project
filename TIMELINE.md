@@ -8,5 +8,5 @@ Unsolved:
 
 10.29
 Unsolved: 
-        [] what can model_zoo & model_urls do?
-        [] what can 'expansion' do? (why is 4 but not 5, 6)
+- [] what can model_zoo & model_urls do?
+- [] what can 'expansion' do? (why is 4 but not 5, 6)
