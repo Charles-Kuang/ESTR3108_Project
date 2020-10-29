@@ -5,7 +5,7 @@ Learn Pytorch mainly from https://pytorch.org/get-started/locally/
 Learn DRN from https://www.cnblogs.com/wzyuan/p/9880342.html
 Unsolved: 
         [] why 'labels' in Cifar10 is of size 4 instead of size 10
-
+        
 10.29
 Learn more details of DRN from https://www.zhihu.com/question/52668301/answer/194998098 & https://towardsdatascience.com/residual-network-implementing-resnet-a7da63c7b278
 Unsolved: 
@@ -13,3 +13,6 @@ Unsolved:
 - [ ] what can 'expansion' do? (why is 4 but not 5, 6)
 - [ ] what means 'inplace' in nn.Relu?
 - [ ] what is kaiming normal?
+
+How to import our dataset?
+https://blog.csdn.net/woshicao11/article/details/78318156
