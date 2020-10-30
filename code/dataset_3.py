@@ -5,11 +5,6 @@ import torch.utils.data
 from skimage import io
 from torchvision import transforms
 
-train_img_path = '../data/task3/training_data'
-train_gt_path = '../data/task3/training_gt.csv'
-test_img_path = '../data/task3/test_data'
-test_gt_path = '../data/task3/test_gt.csv'
-
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
@@ -36,10 +31,10 @@ class LoadDataset3(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         if self.train:
             img_name = self.train_list[idx][0] + '.jpg'
-            image, label = io.imread(os.path.join(train_img_path, img_name)), self.train_list[idx][1]
+            image, label = io.imread(os.path.join(self.train_img_path, img_name)), self.train_list[idx][1]
             image = transform(image)
         else:
             img_name = self.test_list[idx][0] + '.jpg'
-            image, label = io.imread(os.path.join(test_img_path, img_name)), self.test_list[idx][1]
+            image, label = io.imread(os.path.join(self.test_img_path, img_name)), self.test_list[idx][1]
             image = transform(image)
         return image, label

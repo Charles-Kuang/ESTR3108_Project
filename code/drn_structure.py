@@ -122,4 +122,4 @@ def resnet50(pretrained=False, **kwargs):
 #print(dummpy)
 #resnet50(dummpy)
 test = resnet50()
-summary(test.cuda(), (3, 256, 256))
+summary(test, (3, 256, 256))
