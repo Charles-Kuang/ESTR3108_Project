@@ -11,10 +11,10 @@ transform = transforms.Compose(
 
 
 class LoadDataset3(torch.utils.data.Dataset):
-    train_img_path = '../data/task3/training_data'
-    train_gt_path = '../data/task3/training_gt.csv'
-    test_img_path = '../data/task3/test_data'
-    test_gt_path = '../data/task3/test_gt.csv'
+    train_img_path = '..\\data\\task3\\training_data'
+    train_gt_path = '..\\data\\task3\\training_gt.csv'
+    test_img_path = '..\\data\\task3\\test_data'
+    test_gt_path = '..\\data\\task3\\test_gt.csv'
     train_list = pd.read_csv(train_gt_path, header=None).values.tolist()
     test_list = pd.read_csv(test_gt_path, header=None).values.tolist()
 
