@@ -5,11 +5,12 @@ import torch.utils.data
 from skimage import io
 from torchvision import transforms
 from pathlib import Path
+import matplotlib.pyplot as plt
+import torchvision.utils as utils
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-
 
 class LoadDataset3(torch.utils.data.Dataset):
     train_img_path = Path('../data/task3/training_data')
@@ -40,5 +41,19 @@ class LoadDataset3(torch.utils.data.Dataset):
             image = transform(image)
         return image, label
 
+def imshow(inp, title=None):
+    """Imshow for Tensor."""
+    inp = inp.numpy().transpose((1, 2, 0))
+    plt.imshow(inp)
+    if title is not None:
+        plt.title(title)
+    plt.pause(0.001)  # pause a bit so that plots are updated
+
+"""
+trans = transforms.Compose([transforms.ToTensor()])
 test = LoadDataset3()
-print(test[0])
+x, y = test[10]
+imshow(x)
+plt.show()
+print (y)
+"""

@@ -14,5 +14,7 @@ Unsolved:
 - [ ] what means 'inplace' in nn.Relu?
 - [ ] what is kaiming normal?
 
+10.30
 How to import our dataset?
 https://blog.csdn.net/woshicao11/article/details/78318156
+might be useful: https://blog.csdn.net/Teeyohuang/article/details/82108203
