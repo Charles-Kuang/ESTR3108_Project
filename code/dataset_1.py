@@ -1,10 +1,10 @@
 import os
-import pandas as pd
 import torch
 import torch.utils.data
 from skimage import io
 from skimage import color
 from torchvision import transforms
+from pathlib import Path
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
@@ -12,10 +12,10 @@ transform = transforms.Compose(
 
 
 class LoadDataset1(torch.utils.data.Dataset):
-    train_img_path = '..\\data\\task1\\training_data'
-    train_mask_img_path = '..\\data\\task1\\training_gt'
-    test_img_path = '..\\data\\task1\\test_data'
-    test_mask_img_path = '..\\data\\task1\\test_gt'
+    train_img_path = Path('../data/task1/training_data')
+    train_mask_img_path = Path('../data/task1/training_gt')
+    test_img_path = Path('../data/task1/test_data')
+    test_mask_img_path = Path('../data/task1/test_gt')
 
     def __init__(self, transform=None, train=True):
         self.transform = transform
@@ -44,3 +44,6 @@ class LoadDataset1(torch.utils.data.Dataset):
             origin_image = transform(origin_image)
             mask_image = transform(mask_image)
         return origin_image, mask_image
+
+test = LoadDataset1()
+print(test[0])
