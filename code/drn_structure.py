@@ -4,7 +4,7 @@ import torch.utils.model_zoo as model_zoo#
 from torchsummary import summary
 import torch.optim as optim
 
-__all__ = ['ResNet', 'resnet18']
+__all__ = ['ResNet', 'resnet50']
 
 model_urls = {
      'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth',

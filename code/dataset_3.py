@@ -3,6 +3,7 @@ import pandas as pd
 import torch
 import torch.utils.data
 from skimage import io
+from skimage.transform import resize
 from torchvision import transforms
 from pathlib import Path
 import matplotlib.pyplot as plt
@@ -33,11 +34,17 @@ class LoadDataset3(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         if self.train:
             img_name = self.train_list[idx][0] + '.jpg'
+            if self.train_list[idx][1] == 'benign':
+                self.train_list[idx][1] = torch.tensor(0)
+            else:
+                self.train_list[idx][1] = torch.tensor(1)
             image, label = io.imread(os.path.join(self.train_img_path, img_name)), self.train_list[idx][1]
+            image = resize(image, (416,416), preserve_range=True, anti_aliasing=True)
             image = transform(image)
         else:
             img_name = self.test_list[idx][0] + '.jpg'
             image, label = io.imread(os.path.join(self.test_img_path, img_name)), self.test_list[idx][1]
+            image = resize(image, (416, 416), preserve_range=True, anti_aliasing=True)
             image = transform(image)
         return image, label
 
@@ -48,6 +55,9 @@ def imshow(inp, title=None):
     if title is not None:
         plt.title(title)
     plt.pause(0.001)  # pause a bit so that plots are updated
+
+# test = LoadDataset3()
+# print(test[3])
 
 """
 trans = transforms.Compose([transforms.ToTensor()])
