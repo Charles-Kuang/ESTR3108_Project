@@ -1,0 +1,366 @@
+No anti-aliasing, picture size: 1024*1024, batch size:16
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+0   tensor(0.7719, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+1   tensor(0.6439, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+2   tensor(0.4724, grad_fn=<NllLossBackward>)
+tensor([0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0])
+torch.FloatTensor
+3   tensor(0.5790, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0])
+torch.FloatTensor
+4   tensor(0.5695, grad_fn=<NllLossBackward>)
+[1,     5] loss: 0.607
+tensor([0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0])
+torch.FloatTensor
+5   tensor(0.4569, grad_fn=<NllLossBackward>)
+tensor([0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0])
+torch.FloatTensor
+6   tensor(0.5614, grad_fn=<NllLossBackward>)
+tensor([1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+7   tensor(0.4469, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1])
+torch.FloatTensor
+8   tensor(0.6224, grad_fn=<NllLossBackward>)
+tensor([0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0])
+torch.FloatTensor
+9   tensor(0.5033, grad_fn=<NllLossBackward>)
+[1,    10] loss: 0.518
+tensor([0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0])
+torch.FloatTensor
+10   tensor(0.5628, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1])
+torch.FloatTensor
+11   tensor(0.9315, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1])
+torch.FloatTensor
+12   tensor(0.5636, grad_fn=<NllLossBackward>)
+tensor([1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0])
+torch.FloatTensor
+13   tensor(0.5632, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1])
+torch.FloatTensor
+14   tensor(0.5023, grad_fn=<NllLossBackward>)
+[1,    15] loss: 0.625
+tensor([0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0])
+torch.FloatTensor
+15   tensor(0.5632, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0])
+torch.FloatTensor
+16   tensor(0.4394, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1])
+torch.FloatTensor
+17   tensor(0.5012, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1])
+torch.FloatTensor
+18   tensor(0.5010, grad_fn=<NllLossBackward>)
+tensor([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+19   tensor(0.4390, grad_fn=<NllLossBackward>)
+[1,    20] loss: 0.489
+tensor([1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+20   tensor(0.5019, grad_fn=<NllLossBackward>)
+tensor([0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1])
+torch.FloatTensor
+21   tensor(0.5015, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])
+torch.FloatTensor
+22   tensor(0.3774, grad_fn=<NllLossBackward>)
+tensor([0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+torch.FloatTensor
+23   tensor(0.5634, grad_fn=<NllLossBackward>)
+tensor([0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0])
+torch.FloatTensor
+24   tensor(0.6875, grad_fn=<NllLossBackward>)
+[1,    25] loss: 0.526
+tensor([0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+torch.FloatTensor
+25   tensor(0.5630, grad_fn=<NllLossBackward>)
+tensor([0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+26   tensor(0.4397, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0])
+torch.FloatTensor
+27   tensor(0.5011, grad_fn=<NllLossBackward>)
+tensor([0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0])
+torch.FloatTensor
+28   tensor(0.5629, grad_fn=<NllLossBackward>)
+tensor([1, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0])
+torch.FloatTensor
+29   tensor(0.6245, grad_fn=<NllLossBackward>)
+[1,    30] loss: 0.538
+tensor([0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0])
+torch.FloatTensor
+30   tensor(0.4386, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1])
+torch.FloatTensor
+31   tensor(0.6878, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0])
+torch.FloatTensor
+32   tensor(0.5009, grad_fn=<NllLossBackward>)
+tensor([0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0])
+torch.FloatTensor
+33   tensor(0.6878, grad_fn=<NllLossBackward>)
+tensor([0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0])
+torch.FloatTensor
+34   tensor(0.5010, grad_fn=<NllLossBackward>)
+[1,    35] loss: 0.563
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0])
+torch.FloatTensor
+35   tensor(0.5013, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1])
+torch.FloatTensor
+36   tensor(0.6254, grad_fn=<NllLossBackward>)
+tensor([0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+37   tensor(0.3766, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0])
+torch.FloatTensor
+38   tensor(0.6257, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1])
+torch.FloatTensor
+39   tensor(0.3767, grad_fn=<NllLossBackward>)
+[1,    40] loss: 0.501
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+40   tensor(0.3766, grad_fn=<NllLossBackward>)
+tensor([0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1])
+torch.FloatTensor
+41   tensor(0.5631, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])
+torch.FloatTensor
+42   tensor(0.3764, grad_fn=<NllLossBackward>)
+tensor([0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0])
+torch.FloatTensor
+43   tensor(0.5634, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+44   tensor(0.3143, grad_fn=<NllLossBackward>)
+[1,    45] loss: 0.439
+tensor([0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+45   tensor(0.3766, grad_fn=<NllLossBackward>)
+tensor([1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0])
+torch.FloatTensor
+46   tensor(0.5632, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+47   tensor(0.4387, grad_fn=<NllLossBackward>)
+tensor([0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0])
+torch.FloatTensor
+48   tensor(0.5010, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0])
+torch.FloatTensor
+49   tensor(0.4387, grad_fn=<NllLossBackward>)
+[1,    50] loss: 0.464
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0])
+torch.FloatTensor
+50   tensor(0.3763, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+torch.FloatTensor
+51   tensor(0.3141, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0])
+torch.FloatTensor
+52   tensor(0.5004, grad_fn=<NllLossBackward>)
+tensor([1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1])
+torch.FloatTensor
+53   tensor(0.5633, grad_fn=<NllLossBackward>)
+tensor([0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0])
+torch.FloatTensor
+54   tensor(0.5011, grad_fn=<NllLossBackward>)
+[1,    55] loss: 0.451
+tensor([0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0])
+torch.FloatTensor
+55   tensor(0.5630, grad_fn=<NllLossBackward>)
+tensor([0, 1, 0, 0])
+torch.FloatTensor
+56   tensor(0.5633, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+0   tensor(1.3113, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+1   tensor(1.3109, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+2   tensor(1.3110, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+3   tensor(1.3110, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+4   tensor(1.3108, grad_fn=<NllLossBackward>)
+[2,     5] loss: 1.311
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+5   tensor(1.3111, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+6   tensor(1.3106, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+7   tensor(1.3107, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+8   tensor(1.3107, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+9   tensor(1.3102, grad_fn=<NllLossBackward>)
+[2,    10] loss: 1.311
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+10   tensor(1.3092, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+11   tensor(1.3077, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+12   tensor(1.3021, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+13   tensor(1.2522, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+14   tensor(1.2402, grad_fn=<NllLossBackward>)
+[2,    15] loss: 1.282
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+15   tensor(1.2184, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+16   tensor(1.1076, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+17   tensor(1.0908, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+18   tensor(0.9665, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+19   tensor(0.9718, grad_fn=<NllLossBackward>)
+[2,    20] loss: 1.071
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+20   tensor(1.0146, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+21   tensor(0.8674, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+22   tensor(0.8307, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+23   tensor(0.7557, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+24   tensor(0.8759, grad_fn=<NllLossBackward>)
+[2,    25] loss: 0.869
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+25   tensor(0.7610, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+26   tensor(0.9221, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+27   tensor(0.9108, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+28   tensor(0.7623, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+29   tensor(0.7048, grad_fn=<NllLossBackward>)
+[2,    30] loss: 0.812
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+30   tensor(0.7387, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+31   tensor(0.6142, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+32   tensor(0.5657, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+33   tensor(0.4779, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+34   tensor(0.5054, grad_fn=<NllLossBackward>)
+[2,    35] loss: 0.580
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+35   tensor(0.4873, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+36   tensor(0.5410, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+37   tensor(0.4673, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+38   tensor(0.4389, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+39   tensor(0.4399, grad_fn=<NllLossBackward>)
+[2,    40] loss: 0.475
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+40   tensor(0.4472, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+41   tensor(0.3835, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+42   tensor(0.3800, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+43   tensor(0.4429, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+44   tensor(0.4525, grad_fn=<NllLossBackward>)
+[2,    45] loss: 0.421
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+45   tensor(0.3761, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+46   tensor(0.4701, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+47   tensor(0.4384, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+48   tensor(0.4384, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+49   tensor(0.3761, grad_fn=<NllLossBackward>)
+[2,    50] loss: 0.420
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+50   tensor(0.4317, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+51   tensor(0.4135, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+52   tensor(0.4329, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+53   tensor(0.3816, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+54   tensor(0.3434, grad_fn=<NllLossBackward>)
+[2,    55] loss: 0.401
+tensor([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+torch.FloatTensor
+55   tensor(0.3737, grad_fn=<NllLossBackward>)
+tensor([1, 1, 1, 1])
+torch.FloatTensor
+56   tensor(0.3199, grad_fn=<NllLossBackward>)
+Finished Training
