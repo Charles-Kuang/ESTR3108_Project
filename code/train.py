@@ -21,7 +21,8 @@ testLoader = torch.utils.data.DataLoader(testset, batch_size=4, shuffle=True)
 #loss function and optimizer
 net = drn_structure.resnet50()
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=0.0001, momentum=0.9, weight_decay=0.0005)
+#optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9, weight_decay=0.0005)
+optimizer = optim.Adam(net.parameters(), lr=0.001, weight_decay=0.0005)
 
 ##train
 for epoch in range(2):  # loop over the dataset multiple times
@@ -30,7 +31,6 @@ for epoch in range(2):  # loop over the dataset multiple times
     for i, data in enumerate(trainloader, 0):
         # get the inputs; data is a list of [inputs, labels]
         inputs, labels = data
-        print(labels)
         # zero the parameter gradients
         optimizer.zero_grad()
         # forward + backward + optimize
