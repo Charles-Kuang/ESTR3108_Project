@@ -36,16 +36,16 @@ class LoadDataset3(torch.utils.data.Dataset):
             img_name = self.train_list[idx][0] + '.jpg'
             if self.train_list[idx][1] == 'benign':
                 self.train_list[idx][1] = torch.tensor(0)
-            else:
+            elif self.train_list[idx][1] == 'malignant':
                 self.train_list[idx][1] = torch.tensor(1)
             image, label = io.imread(os.path.join(self.train_img_path, img_name)), self.train_list[idx][1]
-            image = resize(image, (416,416), preserve_range=False, anti_aliasing=True)
+            image = resize(image, (250,250), preserve_range=False, anti_aliasing=False)
             image = util.img_as_ubyte(image)
             image = transform(image)
         else:
             img_name = self.test_list[idx][0] + '.jpg'
             image, label = io.imread(os.path.join(self.test_img_path, img_name)), self.test_list[idx][1]
-            image = resize(image, (416, 416), preserve_range=False, anti_aliasing=True)
+            image = resize(image, (250, 250), preserve_range=False, anti_aliasing=False)
             image = util.img_as_ubyte(image)
             image = transform(image)
         return image, label
