@@ -39,11 +39,10 @@ class LoadDataset3b(torch.utils.data.Dataset):
         if self.train:
             img_name = self.train_list[idx][0] + '.jpg'
             mask_name = self.train_list[idx][0] + '_Segmentation.png'
-            cropped_name = os.path.join(self.train_img_path, self.train_list[idx][0]) + '_Cropped.png'
+            cropped_name = self.train_list[idx][0] + '_Cropped.png'
             if (os.access(os.path.join(self.train_img_path, cropped_name), os.F_OK) == False):
-                crop.crop(img_name, cropped_name, mask_name, self.train_list, self.train_img_path, idx)
+                crop.crop(img_name, cropped_name, mask_name, self.train_img_path, idx)
             img_name = cropped_name
-            print(img_name)
             if self.train_list[idx][1] == 'benign':
                 self.train_list[idx][1] = torch.tensor(0)
             elif self.train_list[idx][1] == 'malignant':
@@ -52,20 +51,15 @@ class LoadDataset3b(torch.utils.data.Dataset):
             image = resize(image, (250,250), preserve_range=False, anti_aliasing=False)
             image = util.img_as_ubyte(image)
             image = transform(image)
-            cv2.imshow('1',image)
-            cv2.waitKey(0)
         else:
             img_name = self.test_list[idx][0] + '.jpg'
+            mask_name = self.test_list[idx][0] + '_Segmentation.png'
+            cropped_name = os.path.join(self.test_img_path, self.test_list[idx][0]) + '_Cropped.png'
+            if (os.access(os.path.join(self.test_img_path, cropped_name), os.F_OK) == False):
+                crop.crop(img_name, cropped_name, mask_name, self.test_img_path, idx)
+            img_name = cropped_name
             image, label = io.imread(os.path.join(self.test_img_path, img_name)), self.test_list[idx][1]
-            image = resize(image, (256, 256), preserve_range=False, anti_aliasing=False)
+            image = resize(image, (250, 250), preserve_range=False, anti_aliasing=False)
             image = util.img_as_ubyte(image)
             image = transform(image)
         return image, label
-
-def imshow(inp, title=None):
-    """Imshow for Tensor."""
-    inp = inp.numpy().transpose((1, 2, 0))
-    plt.imshow(inp)
-    if title is not None:
-        plt.title(title)
-    plt.pause(0.001)  # pause a bit so that plots are updated
