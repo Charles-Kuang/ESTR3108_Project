@@ -15,10 +15,12 @@ transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
+b_size = 4
+
 trainset = dataset_3.LoadDataset3(transform=transform, train=True)
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=b_size, shuffle=True)
 testset = dataset_3.LoadDataset3(transform=transform, train=False)
-testLoader = torch.utils.data.DataLoader(testset, batch_size=4, shuffle=True)
+testLoader = torch.utils.data.DataLoader(testset, batch_size=b_size, shuffle=True)
 
 
 ##train
