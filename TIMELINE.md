@@ -22,3 +22,7 @@ Unsolved:
 - [ ] reduce learning rate by factor of 10 every 3000 iterations
 - [ ] what are the arguments in optimizer
 - [ ] when optimizer is SGD, why would the loss sometimes suddenly larger than 1
+
+11.2
+start using mask & exploring FCRN
+mask:https://blog.csdn.net/u014453898/article/details/80715121

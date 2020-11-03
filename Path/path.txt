@@ -1,0 +1,5 @@
+v1:
+	deleted: error with labels
+v2:
+	Adam(net.parameters(), lr=0.001, weight_decay=0.0005)
+	pic_size:412, 412, batch_size:4
