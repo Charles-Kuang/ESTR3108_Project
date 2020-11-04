@@ -99,5 +99,4 @@ def test():
     print('Accuracy of the network on the 10000 test images: %d %%' % (
             100 * correct / total))
 
-
 test()
