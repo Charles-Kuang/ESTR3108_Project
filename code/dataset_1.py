@@ -1,20 +1,15 @@
 import os
 import torch
 import torch.utils.data
+from skimage import io
 from skimage import color
-import torch.utils.data
-from skimage import io, util
-from skimage.transform import resize
 from torchvision import transforms
 from pathlib import Path
-import matplotlib.pyplot as plt
-import torchvision.utils as utils
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-transform4gray = transforms.Compose(
-    [transforms.ToTensor()])
+
 
 class LoadDataset1(torch.utils.data.Dataset):
     train_img_path = Path('../data/task1/training_data')
@@ -22,9 +17,8 @@ class LoadDataset1(torch.utils.data.Dataset):
     test_img_path = Path('../data/task1/test_data')
     test_mask_img_path = Path('../data/task1/test_gt')
 
-    def __init__(self, transform=None, transform4gray=None, train=True):
+    def __init__(self, transform=None, train=True):
         self.transform = transform
-        self.transform4gray = transform4gray
         self.train = train
         if self.train:
             self.mask_img = os.listdir(self.train_mask_img_path)
@@ -40,21 +34,16 @@ class LoadDataset1(torch.utils.data.Dataset):
         if self.train:
             origin_image = io.imread(os.path.join(self.train_img_path, origin_image_name))
             mask_image = io.imread(os.path.join(self.train_mask_img_path, mask_image_name))
-            #mask_image = color.gray2rgb(mask_image)
-            origin_image = resize(origin_image, (250, 250), preserve_range=False, anti_aliasing=False)
-            origin_image = util.img_as_ubyte(origin_image)
-            mask_image = resize(mask_image, (250, 250), preserve_range=False, anti_aliasing=False)
-            mask_image = util.img_as_ubyte(mask_image)
+            mask_image = color.gray2rgb(mask_image)
             origin_image = transform(origin_image)
-            mask_image = transform4gray(mask_image)
+            mask_image = transform(mask_image)
         else:
             origin_image = io.imread(os.path.join(self.test_img_path, origin_image_name))
             mask_image = io.imread(os.path.join(self.test_mask_img_path, mask_image_name))
-            #mask_image = color.gray2rgb(mask_image)
-            origin_image = resize(origin_image, (250, 250), preserve_range=False, anti_aliasing=False)
-            origin_image = util.img_as_ubyte(origin_image)
-            mask_image = resize(mask_image, (250, 250), preserve_range=False, anti_aliasing=False)
-            mask_image = util.img_as_ubyte(mask_image)
+            mask_image = color.gray2rgb(mask_image)
             origin_image = transform(origin_image)
-            mask_image = transform4gray(mask_image)
+            mask_image = transform(mask_image)
         return origin_image, mask_image
+
+test = LoadDataset1()
+print(test[0])
