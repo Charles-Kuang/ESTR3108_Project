@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo#
 from torchsummary import summary
 import torch.optim as optim
+import torchvision.models as models
 
 __all__ = ['ResNet', 'resnet50']
 
@@ -115,6 +116,13 @@ def resnet50(pretrained=False, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = ResNet(Bottleneck, [3, 4, 6, 3], **kwargs)
-    #if pretrained:
-        #model.load_state_dict(model_zoo.load_url(model_urls['resnet50']))
+    if pretrained:
+        pretrain = models.resnet50(pretrained=True)
+        fc_features = pretrain.fc.in_features
+        pretrain.fc = nn.Linear(fc_features, 2)
+        pretrained_dict = pretrain.state_dict()
+        model_dict = model.state_dict()
+        pretrained_dict =  {k: v for k, v in pretrained_dict.items() if k in model_dict}
+        model_dict.update(pretrained_dict)
+        model.load_state_dict(model_dict)
     return model
