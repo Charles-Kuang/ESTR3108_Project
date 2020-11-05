@@ -28,7 +28,7 @@ b_size = 4
 trainset = dataset_1.LoadDataset1(transform=transform, transform4gray=transform4gray, train=True)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=b_size, shuffle=True)
 testset = dataset_1.LoadDataset1(transform=transform, transform4gray=transform4gray, train=False)
-testLoader = torch.utils.data.DataLoader(testset, batch_size=b_size, shuffle=True)
+testLoader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=True)
 
 
 
@@ -125,9 +125,9 @@ def test():
             images, labels = data
             outputs = net(images)
             _, predicted = torch.max(outputs.data, 1)
-            #imshow(torchvision.utils.make_grid(images))
-            #imshow(torchvision.utils.make_grid(predicted))
-            #imshow(torchvision.utils.make_grid(labels))
+            imshow(torchvision.utils.make_grid(images))
+            imshow(torchvision.utils.make_grid(predicted))
+            imshow(torchvision.utils.make_grid(labels))
             predicted = torch.flatten(predicted, 0)
             labels = torch.flatten(labels, 0)
             labels = labels.long()
