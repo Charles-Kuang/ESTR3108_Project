@@ -1,7 +1,9 @@
 import torch
 import torch.nn as nn
+from torch.utils import model_zoo
 from torchsummary import summary
 import torch.optim as optim
+import torchvision.models as models
 
 __all__ = ['FCResNet', 'FCResnet50']
 
@@ -9,6 +11,72 @@ model_urls = {
     'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth',
 }  #
 
+class BilinearConvTranspose2d(nn.ConvTranspose2d):
+    """A conv transpose initialized to bilinear interpolation."""
+
+    def __init__(self, channels, stride, groups=1):
+        """Set up the layer.
+        Parameters
+        ----------
+        channels: int
+            The number of input and output channels
+        stride: int or tuple
+            The amount of upsampling to do
+        groups: int
+            Set to 1 for a standard convolution. Set equal to channels to
+            make sure there is no cross-talk between channels.
+        """
+        if isinstance(stride, int):
+            stride = (stride, stride)
+
+        assert groups in (1, channels), "Must use no grouping, " + \
+            "or one group per channel"
+
+        kernel_size = (2 * stride[0] - 1, 2 * stride[1] - 1)
+        padding = (stride[0] - 1, stride[1] - 1)
+        super().__init__(
+            channels, channels,
+            kernel_size=kernel_size,
+            stride=stride,
+            padding=padding,
+            groups=groups,
+            output_padding=1)
+
+    def reset_parameters(self):
+        """Reset the weight and bias."""
+        nn.init.constant(self.bias, 0)
+        nn.init.constant(self.weight, 0)
+        bilinear_kernel = self.bilinear_kernel(self.stride)
+        for i in range(self.in_channels):
+            if self.groups == 1:
+                j = i
+            else:
+                j = 0
+            self.weight.data[i, j] = bilinear_kernel
+
+    @staticmethod
+    def bilinear_kernel(stride):
+        """Generate a bilinear upsampling kernel."""
+        num_dims = len(stride)
+
+        shape = (1,) * num_dims
+        bilinear_kernel = torch.ones(*shape)
+
+        # The bilinear kernel is separable in its spatial dimensions
+        # Build up the kernel channel by channel
+        for channel in range(num_dims):
+            channel_stride = stride[channel]
+            kernel_size = 2 * channel_stride - 1
+            # e.g. with stride = 4
+            # delta = [-3, -2, -1, 0, 1, 2, 3]
+            # channel_filter = [0.25, 0.5, 0.75, 1.0, 0.75, 0.5, 0.25]
+            delta = torch.arange(1 - channel_stride, channel_stride)
+            channel_filter = (1 - torch.abs(delta / channel_stride))
+            # Apply the channel filter to the current channel
+            shape = [1] * num_dims
+            shape[channel] = kernel_size
+            bilinear_kernel = bilinear_kernel * channel_filter.view(shape)
+        return bilinear_kernel
 
 # define 3x3 convolutional layer
 def conv3x3(in_planes, out_planes, stride=1):
@@ -71,10 +139,9 @@ class FCResNet(nn.Module):
         self.fusion2 = nn.Conv2d(256 * block.expansion, 2, kernel_size=1, bias=False)
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2)
         self.fusion3 = nn.Conv2d(512 * block.expansion, 2, kernel_size=1, bias=False)
-        self.deconv1 = nn.ConvTranspose2d(2, 2, kernel_size=2, stride=2, bias=False)
-        self.deconv2 = nn.ConvTranspose2d(2, 2, kernel_size=2, stride=2, bias=False)
-        self.deconv3 = nn.ConvTranspose2d(2, 2, kernel_size=2, stride=8, bias=False)
-        self.logsoftmax = nn.LogSoftmax(dim=1)
+        self.deconv1 = BilinearConvTranspose2d(2, 2)
+        self.deconv2 = BilinearConvTranspose2d(2, 2)
+        self.deconv3 = BilinearConvTranspose2d(2, 8)
 
         for m in self.modules():  # modules: store all the layers in self
             if isinstance(m, nn.Conv2d):
@@ -114,7 +181,6 @@ class FCResNet(nn.Module):
         x = self.deconv1(x)
         x = self.deconv2(x + fuse_2)
         x = self.deconv3(x + fuse_1)
-        x = self.logsoftmax(x)
         return x
 
 
@@ -124,6 +190,11 @@ def FCResnet50(pretrained=False, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = FCResNet(Bottleneck, [3, 4, 6, 3], **kwargs)
-    # if pretrained:
-    # model.load_state_dict(model_zoo.load_url(model_urls['resnet50']))
+    if pretrained:
+        resnet50 = models.resnet50(pretrained=True)
+        pretrained_dict = resnet50.state_dict()
+        model_dict = model.state_dict()
+        pretrained_dict = {k: v for k, v in pretrained_dict.items() if k in model_dict}
+        model_dict.update(pretrained_dict)
+        model.load_state_dict(model_dict)
     return model

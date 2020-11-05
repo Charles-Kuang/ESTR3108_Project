@@ -4,6 +4,7 @@ from skimage import io
 import torchvision.transforms as transforms
 import torch.nn as nn
 import torch.optim as optim
+import torch.nn.functional as F
 import dataset_1
 import fcrn_structure
 import matplotlib.pyplot as plt
@@ -11,9 +12,9 @@ import torchvision.utils as utils
 from pathlib import Path
 import numpy as np
 from tensorboardX import SummaryWriter
+from distutils.version import LooseVersion
 
-
-writer = SummaryWriter("runs/2")
+writer = SummaryWriter("runs/4")
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
@@ -30,12 +31,14 @@ testset = dataset_1.LoadDataset1(transform=transform, transform4gray=transform4g
 testLoader = torch.utils.data.DataLoader(testset, batch_size=b_size, shuffle=True)
 
 
+
+
 def train():
     # loss function and optimizer
-    net = fcrn_structure.FCResnet50()
+    net = fcrn_structure.FCResnet50(pretrained=True)
     criterion = nn.CrossEntropyLoss()
-    epochs = 30
-    learning_rate = 0.07
+    epochs = 50
+    learning_rate = 0.001
     optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0005)
     # optimizer = optim.Adam(net.parameters(), lr=learning_rate, weight_decay=0.0005)
 
@@ -44,28 +47,26 @@ def train():
         running_loss = 0.0
         total = 0.0
         correct = 0.0
-        acc = 0.0
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
             inputs, labels = data
+            labels = labels.long()
+            labels = torch.flatten(labels, start_dim=1, end_dim=2)
             # zero the parameter gradients
             optimizer.zero_grad()
             # forward + backward + optimize
             outputs = net(inputs)
-            outputs = torch.flatten(outputs, 2)
-            labels = torch.flatten(labels, 1)
-            labels = labels.long()
+            # print(outputs)
+            # print(labels)
             loss = criterion(outputs, labels)
             # print(i, ' ', loss)
             loss.backward()
-            if epoch >= 15:
-                learning_rate = 0.005
-            elif epoch >= 10:
-                learning_rate = 0.01
-            elif epoch >= 5:
-                learning_rate = 0.03
-            else:
-                learning_rate = 0.07
+            if epoch > 30:
+                learning_rate = 0.000001
+            elif epoch > 20:
+                learning_rate = 0.00001
+            elif epoch > 10:
+                learning_rate = 0.0001
             optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0005)
             optimizer.step()
 
@@ -94,7 +95,7 @@ def train():
     print('Finished Training')
     writer.close()
 
-    PATH = Path('../Path/train1_v1.pth')
+    PATH = Path('../Path/train1_v3.pth')
     torch.save(net.state_dict(), PATH)
 
 
@@ -106,15 +107,13 @@ def imshow(img):
 
 
 def test():
-    # dataiter = iter(testLoader)
-    # images, labels = dataiter.next()
 
     # print images
-    # imshow(torchvision.utils.make_grid(images))
-    # print('GroundTruth: ', ' '.join('%5s' % labels[j] for j in range(4)))
+    #imshow(torchvision.utils.make_grid(images))
+    #imshow(torchvision.utils.make_grid(labels))
 
     net = fcrn_structure.FCResnet50()
-    PATH = Path('../Path/train1_v1.pth')
+    PATH = Path('../Path/train1_v2.pth')
     net.load_state_dict(torch.load(PATH))
 
     correct = 0
@@ -126,6 +125,9 @@ def test():
             images, labels = data
             outputs = net(images)
             _, predicted = torch.max(outputs.data, 1)
+            #imshow(torchvision.utils.make_grid(images))
+            #imshow(torchvision.utils.make_grid(predicted))
+            #imshow(torchvision.utils.make_grid(labels))
             predicted = torch.flatten(predicted, 0)
             labels = torch.flatten(labels, 0)
             labels = labels.long()
@@ -136,8 +138,8 @@ def test():
             i = i + 1
             print(predicted)
             print(labels)
-    print('Accuracy of the network on the 94 test images: %d %%' % (
+    print('Accuracy of the network on the 378 test images: %.3f %%' % (
             100 * correct / total))
 
 
-train()
+test()

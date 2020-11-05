@@ -43,6 +43,8 @@ def train():
             optimizer.zero_grad()
             # forward + backward + optimize
             outputs = net(inputs)
+            print(outputs)
+            print(labels)
             loss = criterion(outputs, labels)
             # print(i, ' ', loss)
             loss.backward()
@@ -99,4 +101,3 @@ def test():
     print('Accuracy of the network on the 10000 test images: %d %%' % (
             100 * correct / total))
 
-test()
