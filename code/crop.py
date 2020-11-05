@@ -2,7 +2,7 @@ import cv2
 import os
 import numpy as np
 
-def crop(img_name, cropped_name, mask_name, img_path, idx):
+def crop(img_name, mask_name, img_path, idx):
     full_image_path = os.path.join(img_path, img_name)
     full_mask_path = os.path.join(img_path, mask_name)
     img = cv2.imread(full_image_path)#picture
@@ -29,8 +29,7 @@ def crop(img_name, cropped_name, mask_name, img_path, idx):
     leftmost = np.min(crop_noise[1])
     rightmost = np.max(crop_noise[1])
     #cv2.imshow('0', img)
+    #cv2.waitKey(0)
     img = img[lowest:highest, leftmost:rightmost]
 
-    cv2.imwrite(os.path.join(img_path, cropped_name), img)
-    #cv2.imshow('1', img)
-    #cv2.waitKey(0)
+    return img

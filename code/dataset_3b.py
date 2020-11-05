@@ -17,6 +17,8 @@ transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
+
+
 class LoadDataset3b(torch.utils.data.Dataset):
     train_img_path = Path('../data/task3b/training_data')
     train_gt_path = Path('../data/task3b/training_gt.csv')
@@ -39,27 +41,23 @@ class LoadDataset3b(torch.utils.data.Dataset):
         if self.train:
             img_name = self.train_list[idx][0] + '.jpg'
             mask_name = self.train_list[idx][0] + '_Segmentation.png'
-            cropped_name = self.train_list[idx][0] + '_Cropped.png'
-            if (os.access(os.path.join(self.train_img_path, cropped_name), os.F_OK) == False):
-                crop.crop(img_name, cropped_name, mask_name, self.train_img_path, idx)
-            img_name = cropped_name
             if self.train_list[idx][1] == 'benign':
                 self.train_list[idx][1] = torch.tensor(0)
             elif self.train_list[idx][1] == 'malignant':
                 self.train_list[idx][1] = torch.tensor(1)
-            image, label = io.imread(os.path.join(self.train_img_path, img_name)), self.train_list[idx][1]
-            image = resize(image, (250, 250), preserve_range=False, anti_aliasing=False)
+            label = self.train_list[idx][1]
+            image = crop.crop(img_name, mask_name, self.train_img_path, idx)
+            image = resize(image, (250,250), preserve_range=False, anti_aliasing=True)
             image = util.img_as_ubyte(image)
             image = transform(image)
         else:
             img_name = self.test_list[idx][0] + '.jpg'
             mask_name = self.test_list[idx][0] + '_Segmentation.png'
-            cropped_name = os.path.join(self.test_img_path, self.test_list[idx][0]) + '_Cropped.png'
-            if (os.access(os.path.join(self.test_img_path, cropped_name), os.F_OK) == False):
-                crop.crop(img_name, cropped_name, mask_name, self.test_img_path, idx)
-            img_name = cropped_name
-            image, label = io.imread(os.path.join(self.test_img_path, img_name)), self.test_list[idx][1]
-            image = resize(image, (250, 250), preserve_range=False, anti_aliasing=False)
+            label = self.test_list[idx][1]
+            image = crop.crop(img_name, mask_name, self.test_img_path, idx)
+            #cv2.imshow('1', image)
+            #cv2.waitKey(0)
+            image = resize(image, (250, 250), preserve_range=False, anti_aliasing=True)
             image = util.img_as_ubyte(image)
             image = transform(image)
         return image, label

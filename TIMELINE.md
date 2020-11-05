@@ -26,3 +26,10 @@ Unsolved:
 11.2
 start using mask & exploring FCRN
 mask:https://blog.csdn.net/u014453898/article/details/80715121
+use sampler to balance classes(labels) weights: 
+https://stackoverflow.com/questions/61033726/valueerror-sampler-option-is-mutually-exclusive-with-shuffle-pytorch
+knowledge of sampler: https://www.cnblogs.com/marsggbo/p/11308889.html
+
+11.4
+Use pretrained model: https://blog.csdn.net/TTdreamloong/article/details/84823705
+Flip the image: https://blog.csdn.net/JNingWei/article/details/78753607
