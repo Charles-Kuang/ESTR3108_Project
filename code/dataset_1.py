@@ -9,12 +9,15 @@ from torchvision import transforms
 from pathlib import Path
 import matplotlib.pyplot as plt
 import torchvision.utils as utils
+from preprocessing import processing
+import numpy as np
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 transform4gray = transforms.Compose(
     [transforms.ToTensor()])
+
 
 class LoadDataset1(torch.utils.data.Dataset):
     train_img_path = Path('../data/task1/training_data')
@@ -40,9 +43,9 @@ class LoadDataset1(torch.utils.data.Dataset):
         if self.train:
             origin_image = io.imread(os.path.join(self.train_img_path, origin_image_name))
             mask_image = io.imread(os.path.join(self.train_mask_img_path, mask_image_name))
-            #mask_image = color.gray2rgb(mask_image)
             origin_image = resize(origin_image, (250, 250), preserve_range=False, anti_aliasing=False)
             origin_image = util.img_as_ubyte(origin_image)
+            origin_image = processing(origin_image)
             mask_image = resize(mask_image, (250, 250), preserve_range=False, anti_aliasing=False)
             mask_image = util.img_as_ubyte(mask_image)
             origin_image = transform(origin_image)
@@ -50,11 +53,21 @@ class LoadDataset1(torch.utils.data.Dataset):
         else:
             origin_image = io.imread(os.path.join(self.test_img_path, origin_image_name))
             mask_image = io.imread(os.path.join(self.test_mask_img_path, mask_image_name))
-            #mask_image = color.gray2rgb(mask_image)
             origin_image = resize(origin_image, (250, 250), preserve_range=False, anti_aliasing=False)
             origin_image = util.img_as_ubyte(origin_image)
+            #origin_image = processing(origin_image)
             mask_image = resize(mask_image, (250, 250), preserve_range=False, anti_aliasing=False)
             mask_image = util.img_as_ubyte(mask_image)
             origin_image = transform(origin_image)
             mask_image = transform4gray(mask_image)
         return origin_image, mask_image
+
+def imshow(img):
+    img = img / 2 + 0.5  # unnormalize
+    npimg = img.numpy()
+    plt.imshow(np.transpose(npimg, (1, 2, 0)))
+    plt.show()
+
+trainset = LoadDataset1(transform=transform, transform4gray=transform4gray, train=True)
+origin, mask = trainset[89]
+imshow(utils.make_grid(origin))

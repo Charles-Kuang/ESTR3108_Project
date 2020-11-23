@@ -81,7 +81,7 @@ def test():
     # print('GroundTruth: ', ' '.join('%5s' % labels[j] for j in range(4)))
 
     net = drn_structure.resnet50()
-    PATH = Path('../Path/train3_v1.pth')
+    PATH = Path('../Path/CHEN_train3_v1.pth')
     net.load_state_dict(torch.load(PATH))
 
     correct = 0
@@ -96,8 +96,9 @@ def test():
             correct += (predicted == labels).sum().item()
             print(i)
             i = i + 1
-            print(predicted)
-            print(labels)
+            print("predicted: ", predicted)
+            print("labels: ", labels)
     print('Accuracy of the network on the 10000 test images: %d %%' % (
             100 * correct / total))
 
+test()
