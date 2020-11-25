@@ -27,4 +27,7 @@ def processing(x):
             g[...] = 0
             r[...] = 0
     result = inpaint.inpaint_biharmonic(x_defect, y, multichannel=True)
+    # y = y.astype(float)
+    # y = color.gray2rgb(y)
+
     return result

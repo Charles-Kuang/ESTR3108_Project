@@ -28,7 +28,7 @@ b_size = 4
 trainset = dataset_1.LoadDataset1(transform=transform, transform4gray=transform4gray, train=True)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=b_size, shuffle=True)
 testset = dataset_1.LoadDataset1(transform=transform, transform4gray=transform4gray, train=False)
-testLoader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=True)
+testLoader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False)
 
 
 

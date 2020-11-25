@@ -11,6 +11,8 @@ import torchvision.utils as utils
 from pathlib import Path
 import numpy as np
 
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])

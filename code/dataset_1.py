@@ -44,8 +44,8 @@ class LoadDataset1(torch.utils.data.Dataset):
             origin_image = io.imread(os.path.join(self.train_img_path, origin_image_name))
             mask_image = io.imread(os.path.join(self.train_mask_img_path, mask_image_name))
             origin_image = resize(origin_image, (250, 250), preserve_range=False, anti_aliasing=False)
-            origin_image = util.img_as_ubyte(origin_image)
             origin_image = processing(origin_image)
+            origin_image = util.img_as_ubyte(origin_image)
             mask_image = resize(mask_image, (250, 250), preserve_range=False, anti_aliasing=False)
             mask_image = util.img_as_ubyte(mask_image)
             origin_image = transform(origin_image)
@@ -54,8 +54,8 @@ class LoadDataset1(torch.utils.data.Dataset):
             origin_image = io.imread(os.path.join(self.test_img_path, origin_image_name))
             mask_image = io.imread(os.path.join(self.test_mask_img_path, mask_image_name))
             origin_image = resize(origin_image, (250, 250), preserve_range=False, anti_aliasing=False)
+            origin_image = processing(origin_image)
             origin_image = util.img_as_ubyte(origin_image)
-            #origin_image = processing(origin_image)
             mask_image = resize(mask_image, (250, 250), preserve_range=False, anti_aliasing=False)
             mask_image = util.img_as_ubyte(mask_image)
             origin_image = transform(origin_image)
@@ -67,7 +67,3 @@ def imshow(img):
     npimg = img.numpy()
     plt.imshow(np.transpose(npimg, (1, 2, 0)))
     plt.show()
-
-trainset = LoadDataset1(transform=transform, transform4gray=transform4gray, train=True)
-origin, mask = trainset[89]
-imshow(utils.make_grid(origin))
