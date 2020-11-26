@@ -14,7 +14,7 @@ import numpy as np
 from tensorboardX import SummaryWriter
 from distutils.version import LooseVersion
 
-writer = SummaryWriter("runs/4")
+writer = SummaryWriter("runs/5")
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
@@ -28,7 +28,7 @@ b_size = 4
 trainset = dataset_1.LoadDataset1(transform=transform, transform4gray=transform4gray, train=True)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=b_size, shuffle=True)
 testset = dataset_1.LoadDataset1(transform=transform, transform4gray=transform4gray, train=False)
-testLoader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False)
+testLoader = torch.utils.data.DataLoader(testset, batch_size=b_size, shuffle=False)
 
 
 
@@ -37,7 +37,7 @@ def train():
     # loss function and optimizer
     net = fcrn_structure.FCResnet50(pretrained=True)
     criterion = nn.CrossEntropyLoss()
-    epochs = 50
+    epochs = 20
     learning_rate = 0.001
     optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0005)
     # optimizer = optim.Adam(net.parameters(), lr=learning_rate, weight_decay=0.0005)
@@ -125,9 +125,9 @@ def test():
             images, labels = data
             outputs = net(images)
             _, predicted = torch.max(outputs.data, 1)
-            imshow(torchvision.utils.make_grid(images))
-            imshow(torchvision.utils.make_grid(predicted))
-            imshow(torchvision.utils.make_grid(labels))
+            #imshow(torchvision.utils.make_grid(images))
+            #imshow(torchvision.utils.make_grid(predicted))
+            #imshow(torchvision.utils.make_grid(labels))
             predicted = torch.flatten(predicted, 0)
             labels = torch.flatten(labels, 0)
             labels = labels.long()
@@ -142,4 +142,4 @@ def test():
             100 * correct / total))
 
 
-test()
+train()
