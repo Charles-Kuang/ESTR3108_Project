@@ -2,14 +2,19 @@ import torch
 import torch.nn as nn
 import torch.utils.model_zoo as model_zoo#
 from torchsummary import summary
+from pathlib import Path
 import torch.optim as optim
 import torchvision.models as models
+
+device = torch.device("cuda:0")
 
 __all__ = ['ResNet', 'resnet50']
 
 model_urls = {
-     'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth',
+    'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth',
 }#
+
+PATH = Path('../Path/train3b_v4_50w-5e-sw-45-8b.pth')
 
 #define 3x3 convolutional layer
 def conv3x3(in_planes, out_planes, stride=1):
@@ -25,6 +30,7 @@ class Bottleneck(nn.Module):
         self.conv1 = nn.Conv2d(inplanes, outplanes, kernel_size=1, bias=False)
         self.bn1 = nn.BatchNorm2d(outplanes)
         self.conv2 = nn.Conv2d(outplanes, outplanes, kernel_size=3, stride=stride, padding=1, bias=False)
+        #self.dp = nn.Dropout(p=0, inplace=True)
         self.bn2 = nn.BatchNorm2d(outplanes)
         self.conv3 = nn.Conv2d(outplanes, outplanes * self.expansion, kernel_size=1, bias=False)
         self.bn3 = nn.BatchNorm2d(outplanes * self.expansion)
@@ -41,6 +47,7 @@ class Bottleneck(nn.Module):
 
         out = self.conv2(out)
         out = self.bn2(out)
+        #out = self.dp(out)
         out = self.relu(out)
 
         out = self.conv3(out)
@@ -106,8 +113,8 @@ class ResNet(nn.Module):
         x = self.avgpool(x)
         x = torch.flatten(x, 1)
         x = self.fc(x)
+        x = self.logsoftmax(x)
         return x
-
 
 def resnet50(pretrained=False, **kwargs):
     """Constructs a ResNet-50 model.
@@ -115,6 +122,7 @@ def resnet50(pretrained=False, **kwargs):
         pretrained (bool): If True, returns a model pre-trained on ImageNet
     """
     model = ResNet(Bottleneck, [3, 4, 6, 3], **kwargs)
+    model = model.to(device)
     if pretrained:
         pretrain = models.resnet50(pretrained=True)
         fc_features = pretrain.fc.in_features
