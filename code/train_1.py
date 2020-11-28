@@ -14,7 +14,7 @@ import numpy as np
 from tensorboardX import SummaryWriter
 from distutils.version import LooseVersion
 
-writer = SummaryWriter("runs/4")
+writer = SummaryWriter("runs/5")
 
 transform = transforms.Compose(
     [transforms.ToTensor(),
@@ -37,7 +37,7 @@ def train():
     # loss function and optimizer
     net = fcrn_structure.FCResnet50(pretrained=True)
     criterion = nn.CrossEntropyLoss()
-    epochs = 50
+    epochs = 20
     learning_rate = 0.001
     optimizer = optim.SGD(net.parameters(), lr=learning_rate, momentum=0.9, weight_decay=0.0005)
     # optimizer = optim.Adam(net.parameters(), lr=learning_rate, weight_decay=0.0005)
@@ -125,9 +125,9 @@ def test():
             images, labels = data
             outputs = net(images)
             _, predicted = torch.max(outputs.data, 1)
-            imshow(torchvision.utils.make_grid(images))
-            imshow(torchvision.utils.make_grid(predicted))
-            imshow(torchvision.utils.make_grid(labels))
+            #imshow(torchvision.utils.make_grid(images))
+            #imshow(torchvision.utils.make_grid(predicted))
+            #imshow(torchvision.utils.make_grid(labels))
             predicted = torch.flatten(predicted, 0)
             labels = torch.flatten(labels, 0)
             labels = labels.long()
@@ -141,5 +141,20 @@ def test():
     print('Accuracy of the network on the 378 test images: %.3f %%' % (
             100 * correct / total))
 
+def testforone(a):
+    net = fcrn_structure.FCResnet50()
+    PATH = Path('../Path/train1_v3.pth')
+    net.load_state_dict(torch.load(PATH))
+    i = 0
+    with torch.no_grad():
+        for data in testLoader:
+            if i == a:
+                images, labels = data
+                outputs = net(images)
+                _, predicted = torch.max(outputs.data, 1)
+                imshow(torchvision.utils.make_grid(images))
+                imshow(torchvision.utils.make_grid(predicted))
+                imshow(torchvision.utils.make_grid(labels))
+            i = i + 1
 
-test()
+testforone(171)

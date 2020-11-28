@@ -67,3 +67,8 @@ def imshow(img):
     npimg = img.numpy()
     plt.imshow(np.transpose(npimg, (1, 2, 0)))
     plt.show()
+
+
+test = LoadDataset1(train=False)
+origin, mask = test[171]
+imshow(origin)
