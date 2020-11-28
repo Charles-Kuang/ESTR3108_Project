@@ -13,10 +13,11 @@ import torchvision.utils as utils
 import numpy as np
 import crop
 
-transform = transforms.Compose(
-    [transforms.ToTensor(),
-     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
+
+transform = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 
 class LoadDataset3b(torch.utils.data.Dataset):
@@ -48,12 +49,15 @@ class LoadDataset3b(torch.utils.data.Dataset):
             label = self.train_list[idx][1]
             image = crop.crop(img_name, mask_name, self.train_img_path, idx)
             image = resize(image, (250,250), preserve_range=False, anti_aliasing=True)
-            image = util.img_as_ubyte(image)
-            image = transform(image)
+            image = util.img_as_ubyte(image)#(250,250,3)
+            #print(image.shape)
+            image = transform(image)#(3,250,250)
+            #print(image.shape)
         else:
             img_name = self.test_list[idx][0] + '.jpg'
             mask_name = self.test_list[idx][0] + '_Segmentation.png'
             label = self.test_list[idx][1]
+            label = int(label)
             image = crop.crop(img_name, mask_name, self.test_img_path, idx)
             #cv2.imshow('1', image)
             #cv2.waitKey(0)
