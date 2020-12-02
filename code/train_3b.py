@@ -72,7 +72,7 @@ def make_weights_for_balanced_classes(items, classes):
     weight_per_class = [0.] * classes
     N = float(sum(count))
     for i in range(classes):
-        weight_per_class[i] = float(count[1-i])/N
+        weight_per_class[i] = (N/2) / float(count[i])
     #weight_per_class[0] = weight_per_class[0] * 2
     weight = [0] * len(items)
     for idx, item in enumerate(items):
@@ -83,25 +83,6 @@ weights = torch.DoubleTensor(weights)
 sampler = torch.utils.data.sampler.WeightedRandomSampler(weights, len(weights))
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=b_size, sampler=sampler, pin_memory=True)
 
-
-"""
-weightsh = make_weights_for_balanced_classes(trainseth.train_list, 2)
-weightsh = torch.DoubleTensor(weightsh)
-samplerh = torch.utils.data.sampler.WeightedRandomSampler(weightsh, len(weightsh))
-trainloaderh = torch.utils.data.DataLoader(trainseth, batch_size=b_size, sampler=samplerh, pin_memory=True)
-
-weightsv = make_weights_for_balanced_classes(trainsetv.train_list, 2)
-weightsv = torch.DoubleTensor(weightsv)
-samplerv = torch.utils.data.sampler.WeightedRandomSampler(weightsv, len(weightsv))
-trainloaderv = torch.utils.data.DataLoader(trainsetv, batch_size=b_size, sampler=samplerv, pin_memory=True)
-
-weightshv = make_weights_for_balanced_classes(trainsethv.train_list, 2)
-weightshv = torch.DoubleTensor(weightshv)
-samplerhv = torch.utils.data.sampler.WeightedRandomSampler(weightshv, len(weightshv))
-trainloaderhv = torch.utils.data.DataLoader(trainsethv, batch_size=b_size, sampler=samplerhv, pin_memory=True)
-"""
-
-
 testLoader = torch.utils.data.DataLoader(testset, batch_size=b_size, shuffle=False, pin_memory=True)
 
 
@@ -109,7 +90,7 @@ testLoader = torch.utils.data.DataLoader(testset, batch_size=b_size, shuffle=Fal
 ##train
 def train():
     # loss function and optimizer
-    net = drn_structure.resnet50(pretrained = False)
+    net = width.wide_resnet50_2(pretrained = True)
     #net.load_state_dict(torch.load(PATH))
     print(weight_per_class)
     
@@ -146,7 +127,9 @@ def train():
             optimizer.step()
 
             running_loss += loss.item()
+            print(outputs)
             _, predicted = torch.max(outputs.data, 1)
+            del outputs
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
             if i % 10 == 9:  # print every 5 mini-batches
@@ -160,21 +143,22 @@ def train():
                 running_loss = 0.0
                 correct = 0
                 total = 0
+                threshold = 1
                 if t % 2 == 0 and t > 0:
                     PATH = Path('../Path/16B-test/' + str(epoch+1) + '-' + str(t) + '.pth')
                     torch.save(net.state_dict(), PATH)
-                    test(PATH, t)
+                    test(PATH, t, threshold)
     print('Finished Training')
 
 
 
-def test(PATH, t):
-    tnet = drn_structure.resnet50(pretrained = False)
+def test(PATH, t, threshold):
+    tnet = drn_structure.resnet50(pretrained = True)
     tnet.load_state_dict(torch.load(PATH))
     tnet.eval()
 
-    writer_t_0 = SummaryWriter("Res50/16B-test-validation0")
-    writer_t_1 = SummaryWriter("Res50/16B-test-validation1")
+    writer_t_0 = SummaryWriter("Res50/0")
+    writer_t_1 = SummaryWriter("Res50/1")
     
     correct = 0
     correct1 = 0
@@ -185,14 +169,23 @@ def test(PATH, t):
 
     class_correct = list(0. for i in range(2))
     class_total = list(0. for i in range(2))
-
+    print(threshold)
     with torch.no_grad():
         for data in testLoader:
             images, labels = data
             images = images.to(device)
             labels =labels.to(device)
             outputs = tnet(images).to(device)
+            
+            i = 0
+            for output in outputs:
+                outputs[i][0] = outputs[i][0] / threshold
+                i += 1
+            
             _, predicted = torch.max(outputs.data, 1)
+            
+
+
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
             c = (predicted == labels).squeeze()
